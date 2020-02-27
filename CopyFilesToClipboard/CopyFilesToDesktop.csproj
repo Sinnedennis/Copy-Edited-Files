@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{226A43D1-8414-44FD-A893-E6F688B1E48F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CopyFilesToClipboard</RootNamespace>
-    <AssemblyName>CopyFilesToClipboard</AssemblyName>
+    <RootNamespace>CopyFilesToDesktop</RootNamespace>
+    <AssemblyName>CopyFilesToDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -83,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="CopyFilesToClipboard_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>

@@ -39,7 +39,17 @@ namespace CopyFilesToClipboard
                 try
                 {
                     var filePathFull = Path.Combine(repoPath, filePath);
-                    var relativePath = filePath.Replace(filePath.Split('\\').First(), "");
+                    //Issue here with files in rot
+                    var relativePath = "";
+
+                    if (filePath.Contains(""))
+                    {
+                        relativePath = filePath;
+                    }
+                    else
+                    {
+                        relativePath = filePath.Replace(filePath.Split('\\').First(), "");
+                    }
                     var copyPathFull = writePath + relativePath;
                     var copyPathDir = GetTargetDirectory(relativePath, writePath);
 
