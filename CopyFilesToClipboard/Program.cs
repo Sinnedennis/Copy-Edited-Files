@@ -39,17 +39,7 @@ namespace CopyFilesToClipboard
                 try
                 {
                     var filePathFull = Path.Combine(repoPath, filePath);
-                    //Issue here with files in rot
-                    var relativePath = "";
-
-                    if (filePath.Contains(""))
-                    {
-                        relativePath = filePath;
-                    }
-                    else
-                    {
-                        relativePath = filePath.Replace(filePath.Split('\\').First(), "");
-                    }
+                    var relativePath = GetRelativeFilePath(filePath);
                     var copyPathFull = writePath + relativePath;
                     var copyPathDir = GetTargetDirectory(relativePath, writePath);
 
@@ -73,6 +63,18 @@ namespace CopyFilesToClipboard
             }
             ////Console.ReadKey();
             return;
+        }
+
+        private static string GetRelativeFilePath (string filePath)
+        {
+            if (filePath.Contains(""))
+            {
+                return filePath;
+            }
+            else
+            {
+                return filePath.Replace(filePath.Split('\\').First(), "");
+            }
         }
 
         private static string GetTargetDirectory(string relativeFilePath, string writePath)
