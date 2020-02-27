@@ -14,9 +14,10 @@ namespace CopyFilesToClipboard
                 return;
             }
 
+            //Get filepaths into list, removing first arg which is always the project path
             var filePaths = args.Where(x => x != null && !String.IsNullOrEmpty(x))
                 .Select(x => x.Replace("/", @"\")).ToList();
-            filePaths.RemoveAt(0);            
+            filePaths.RemoveAt(0);
 
             var repoPath = args.First();
             var repoName = new DirectoryInfo(repoPath).Name;
@@ -24,6 +25,12 @@ namespace CopyFilesToClipboard
 
             Console.WriteLine("_____________________________________________________________________________________");
             Console.WriteLine("Starting file copy. {0} Files found", filePaths.Count());
+
+            //Delete any existing files
+            if (Directory.Exists(writePath))
+            {
+                Directory.Delete(writePath, true);
+            }
 
             Directory.CreateDirectory(writePath);
 
@@ -58,7 +65,7 @@ namespace CopyFilesToClipboard
             return;
         }
 
-        private static string GetTargetDirectory (string relativeFilePath, string writePath)
+        private static string GetTargetDirectory(string relativeFilePath, string writePath)
         {
             var dirArr = relativeFilePath.Split('\\').ToList();
             dirArr.RemoveAt(dirArr.Count() - 1);
