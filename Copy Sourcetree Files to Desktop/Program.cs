@@ -52,7 +52,15 @@ namespace CopyFilesToClipboard
                         Directory.CreateDirectory(copyPathDir);
                     }
 
-                    File.Copy(filePathFull, copyPathFull, true);
+                    if (File.Exists(filePathFull))
+                    {
+                        File.Copy(filePathFull, copyPathFull, true);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Can't find file: {0}", filePathFull);
+                        Console.WriteLine("Skipping");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -61,7 +69,7 @@ namespace CopyFilesToClipboard
                     Console.WriteLine(ex.ToString());
                 }
             }
-            Console.Read();
+            //Console.Read();
             return;
         }
 
