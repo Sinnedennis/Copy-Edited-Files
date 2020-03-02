@@ -40,7 +40,7 @@ namespace CopyFilesToClipboard
                 {
                     var filePathFull = Path.Combine(repoPath, filePath);
                     var relativePath = GetRelativeFilePath(filePath);
-                    var copyPathFull = writePath + relativePath;
+                    var copyPathFull = Path.Combine(writePath, relativePath);
                     var copyPathDir = GetTargetDirectory(relativePath, writePath);
 
                     Console.WriteLine("Copying file from: {0}", Path.Combine(repoPath, filePath));
@@ -61,7 +61,7 @@ namespace CopyFilesToClipboard
                     Console.WriteLine(ex.ToString());
                 }
             }
-            ////Console.ReadKey();
+            Console.Read();
             return;
         }
 
@@ -82,7 +82,7 @@ namespace CopyFilesToClipboard
             var dirArr = relativeFilePath.Split('\\').ToList();
             dirArr.RemoveAt(dirArr.Count() - 1);
             var dirPath = String.Join("\\", dirArr);
-            dirPath = writePath + dirPath.TrimEnd('\\');
+            dirPath = Path.Combine(writePath, dirPath.TrimEnd('\\'));
             return dirPath;
         }
     }

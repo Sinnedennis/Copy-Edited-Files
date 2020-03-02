@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Copy_Sourcetree_Files_to_Desktop</RootNamespace>
+    <ApplicationIcon>30082843.ico</ApplicationIcon>
+    <StartupObject />
+    <Description>A simple program that is used as a custom action in Sourcetree so copy edited files to the desktop</Description>
+    <PackageIcon>30082843.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/Sinnedennis/Copy-Edited-Files</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Users\dennis.foster\Downloads\30082843.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
