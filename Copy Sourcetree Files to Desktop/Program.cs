@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.IO;
+using System.Diagnostics;
 
 namespace CopyFilesToClipboard
 {
@@ -71,13 +72,17 @@ namespace CopyFilesToClipboard
                 }
             }
 
-            #if DEBUG
-                Console.WriteLine();
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-            #endif
+            ReadKeyIfDebugging();
 
             return;
+        }
+
+        [Conditional("DEBUG")]
+        private static void ReadKeyIfDebugging()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
         }
 
         private static string GetFileName (string filePath)
