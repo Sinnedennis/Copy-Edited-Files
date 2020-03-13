@@ -24,7 +24,7 @@ namespace CopyFilesToClipboard
             var writePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), repoName);
 
             Console.WriteLine("_____________________________________________________________________________________");
-            Console.WriteLine("Starting file copy. {0} Files found", filePaths.Count());
+            Console.WriteLine("Starting file copy. {0} {1} found", filePaths.Count(), filePaths.Count() == 1 ? "file" : "files");
 
             //Delete any existing files
             if (Directory.Exists(writePath))
@@ -38,12 +38,13 @@ namespace CopyFilesToClipboard
             {
                 try
                 {
+                    var fileName = GetFileName(filePath);
                     var filePathFull = Path.Combine(repoPath, filePath);
                     var relativePath = GetRelativeFilePath(filePath);
                     var copyPathFull = Path.Combine(writePath, relativePath);
                     var copyPathDir = GetTargetDirectory(relativePath, writePath);
 
-                    Console.WriteLine("Copying file from: {0}", Path.Combine(repoPath, filePath));
+                    Console.WriteLine("Copying file {0} from: {1}", fileName, Path.Combine(repoPath, filePath).Replace(fileName, ""));
                     Console.WriteLine("To: {0}", Path.Combine(writePath, relativePath));
                     Console.WriteLine("_____________________________________________________________________________________");
 
@@ -69,8 +70,19 @@ namespace CopyFilesToClipboard
                     Console.WriteLine(ex.ToString());
                 }
             }
-            //Console.Read();
+
+            #if DEBUG
+                Console.WriteLine();
+                Console.WriteLine("Press any key to exit.");
+                Console.ReadKey();
+            #endif
+
             return;
+        }
+
+        private static string GetFileName (string filePath)
+        {
+            return filePath.Split('\\').Last();
         }
 
         private static string GetRelativeFilePath (string filePath)
